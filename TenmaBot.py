@@ -80,8 +80,7 @@ async def _set_status(new = None):
 
 #Check if author is an admin
 def _is_admin(ctx):
-    return ctx.author in tenma_storage.ADMIN_ID
-
+    return ctx.author.id in tenma_storage.ADMIN_ID
 
 #########################################
 ######### EVENTS ########################
@@ -117,7 +116,7 @@ async def on_reaction_add(reaction,user):
             await favorite_id(embedsReacted[0].description, user)
         elif emote == "❌":
             await _delete_msg(msg)
-            
+
 #########################################
 ######### COMMANDS ######################
 #########################################
