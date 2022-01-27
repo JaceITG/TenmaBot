@@ -1,4 +1,4 @@
-import discord
+import discord, asyncio, random
 import tenma_storage, tenma_config
 from TenmaBot import bot
 
@@ -84,15 +84,6 @@ async def get_embed(url):
     embed = discord.Embed()
     embed.set_image(url=url)
     return embed
-
-#TODO: documentation
-async def ping_rohil(secs):
-    await asyncio.sleep(secs)
-    while True:
-        rohil_mention = bot.get_user(463608962059862018).mention
-        rohil_ping_chan = bot.get_channel(483289509941870595)
-        await sendMsg(f"{rohil_mention} bitch", rohil_ping_chan)
-        await asyncio.sleep(86400)
 
 #TODO: documentation
 async def set_status(new=None):

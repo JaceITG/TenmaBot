@@ -28,14 +28,6 @@ async def on_ready():
 
     await tenma_utils.set_status()
 
-    #Get time until hour for rohil ping
-    now = datetime.now()
-    hr = tenma_storage.ROHIL_PING_TIME[0]
-    min = tenma_storage.ROHIL_PING_TIME[1]
-    secs_left = int((timedelta(hours=24) - (now - now.replace(hour=hr, minute=min, second=0, microsecond=0))).total_seconds() % (24 * 3600))
-
-    await tenma_utils.ping_rohil(secs_left)
-
 @bot.event
 async def on_message(message):
     if moderation.is_muted(message.author.id):
@@ -45,7 +37,7 @@ async def on_message(message):
 @bot.listen()
 async def on_reaction_add(reaction,user):
     #Ignore bot's reaction add
-    if user == client.user:
+    if user == bot.user:
         return
 
     msg = reaction.message
@@ -59,7 +51,7 @@ async def on_reaction_add(reaction,user):
 
 @bot.command(name='ping')
 async def _ping(ctx):
-    await _send_msg("Pong", ctx.channel)
+    await tenma_utils.send_msg("Pong", ctx.channel)
 
 #### ADMIN ONLY ####
 
