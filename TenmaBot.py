@@ -49,7 +49,7 @@ async def on_reaction_add(reaction,user):
 
 @bot.command(name='ping')
 async def _ping(ctx):
-    await tenma_utils.send_msg("Pong", ctx.channel)
+    await tenma_utils.send_message("Pong", ctx.channel)
 
 #### ADMIN ONLY ####
 
@@ -58,6 +58,7 @@ async def _ping(ctx):
 async def _exit(ctx):
     print("Exiting TenmaBot...")
     await bot.logout()
+
 
 def main():
     bot.run(os.environ.get('TOKEN'))
