@@ -16,7 +16,7 @@ import moderation
 
 #Check if author is an admin
 def _is_admin(ctx):
-    return ctx.author.id == os.environ.get('ADMIN_ID')
+    return ctx.author.id == int(os.environ.get('ADMIN_ID'))
 
 #########################################
 ######### EVENTS ########################
@@ -61,5 +61,8 @@ async def _exit(ctx):
     print("Exiting TenmaBot...")
     await bot.logout()
 
+def main():
+    bot.run(os.environ.get('TOKEN'))
 
-bot.run(os.environ.get('TOKEN'))
+if __name__ == "__main__":
+    main()
