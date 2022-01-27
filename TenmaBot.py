@@ -3,7 +3,7 @@ import os, discord, random, sys, asyncio
 from discord.ext import commands
 from datetime import datetime, timedelta
 import tenma_config
-bot = commands.Bot(command_prefix=tenma_config.PREFIX)
+bot = commands.Bot(command_prefix=tenma_config.prefix)
 
 #Command modules
 import tenma_utils
@@ -34,6 +34,7 @@ async def on_ready():
 @bot.event
 @bot.listen()
 async def on_reaction_add(reaction,user):
+
     #Ignore bot's reaction add
     if user == bot.user:
         return
@@ -41,6 +42,13 @@ async def on_reaction_add(reaction,user):
     msg = reaction.message
     embeds_reacted = msg.embeds
     emote = reaction.emoji
+
+    #Quote message 
+    if emote == '💬' and msg.guild.id == tenma_config.riji_server:
+        _quote_channel = msg.guild.get_channel(tenma_config.riji_quote_chan)
+        _embed = await tenma_utils.embed_quote(msg)
+        await tenma_utils.send_embed(_embed, msg.channel)
+
 
 
 #########################################

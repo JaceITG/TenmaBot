@@ -34,21 +34,21 @@ async def send_message( message, channel ):
         m_sMessage = await channel.send( message )
         print(f"-Message sent to {channel.name}: \n\t-\"{message}\"")
         return m_sMessage
-    except:
-        print(f"Error while attempting to send message to {channel.name}")
-
+    except Exception as e:
+        print(f"Error while attempting to send message to {channel.name}: \n{e}")
+        
 # -----------------------
 # tenma_utils.embed_image
-# Purpose: Embed an image
-# (mainly for danbooru)
+# Purpose: Sends an embed
+# in a given channel
 # -----------------------
-async def embed_image( message, channel, content=None ):
+async def send_embed( embed, channel, content=None ):
     try:
-        m_fEmbed = await channel.send( content=content, embed=message )
-        print(f"-Embed sent to {channel.name}: {message.title}")
+        m_fEmbed = await channel.send( content=content, embed=embed )
+        print(f"-Embed sent to {channel.name}: {embed.title}")
         return m_fEmbed
-    except:
-        print(f"Error while attempting to send embed to {channel.name}")
+    except Exception as e:
+        print(f"Error while attempting to send embed to {channel.name}: \n{e}")
 
 # -----------------------
 # tenma_utils.send_file
@@ -92,6 +92,14 @@ async def set_status(new=None):
     else:
         activity_name = random.choice(tenma_config.activities)
     await bot.change_presence(activity=discord.Game(name=activity_name))
+
+# -----------------------
+# tenma_utils.embed_quote
+# Purpose: Create a visualization
+# of a message sent in another channel
+# -----------------------
+async def embed_quote(message):
+    return discord.Embed()
 
 # NOTE: I'll clean the rest of this up later and finish documentation
 # - software engineer
