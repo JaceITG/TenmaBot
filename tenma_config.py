@@ -6,6 +6,8 @@ activities = ["mobile games", "HOW", "POGGER", "pee.com", "rijihuudu.ahlamontada
 
 db_stream_delay = 5
 
+PREFIX = '$'
+
 #########################
 #### Commands On/Off ####
 #########################

@@ -2,8 +2,8 @@
 import os, discord, random, sys, asyncio
 from discord.ext import commands
 from datetime import datetime, timedelta
-import tenma_storage
-bot = commands.Bot(command_prefix=tenma_storage.PREFIX)
+import tenma_config
+bot = commands.Bot(command_prefix=tenma_config.PREFIX)
 
 #Command modules
 import tenma_utils
