@@ -7,7 +7,6 @@ bot = commands.Bot(command_prefix=tenma_config.PREFIX)
 
 #Command modules
 import tenma_utils
-import moderation
 
 
 #########################################
@@ -28,10 +27,9 @@ async def on_ready():
 
     await tenma_utils.set_status()
 
-@bot.event
-async def on_message(message):
-    if moderation.is_muted(message.author.id):
-        await tenma_utils.delete_message(message)
+# @bot.event
+# async def on_message(message):
+#     pass
 
 @bot.event
 @bot.listen()
