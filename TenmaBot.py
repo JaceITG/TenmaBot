@@ -6,7 +6,7 @@ import tenma_storage
 bot = commands.Bot(command_prefix=tenma_storage.PREFIX)
 
 #Command modules
-import tenma_config, tenma_utils
+import tenma_utils
 import moderation
 
 
@@ -16,7 +16,7 @@ import moderation
 
 #Check if author is an admin
 def _is_admin(ctx):
-    return ctx.author.id in tenma_storage.ADMIN_ID
+    return ctx.author.id == os.environ.get('ADMIN_ID')
 
 #########################################
 ######### EVENTS ########################
@@ -62,4 +62,4 @@ async def _exit(ctx):
     await bot.logout()
 
 
-bot.run(tenma_storage.TOKEN)
+bot.run(os.environ.get('TOKEN'))
