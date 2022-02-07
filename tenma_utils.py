@@ -1,5 +1,5 @@
 import discord, asyncio, random
-import tenma_storage, tenma_config
+import tenma_config
 from TenmaBot import bot
 
 local_client = discord.Client( )
@@ -20,7 +20,7 @@ async def handle_cline( command ):
                 _channel = local_client.get_channel( int( _arguments[ 1 ] ) )
                 _message = ' '.join( _arguments[ 2: ] )
             except:
-                _channel = local_client.get_channel( tenma_storage.MAIN_CHAT_ID )
+                _channel = local_client.get_channel( tenma_config.tenma_main )
                 _message = ' '.join( _arguments[ 1: ] )
             await send_message( _message, _channel )
 
