@@ -1,6 +1,5 @@
 import discord, asyncio, random
 import tenma_config
-from TenmaBot import bot
 
 local_client = discord.Client( )
 
@@ -86,12 +85,19 @@ async def get_embed(url):
     return embed
 
 #TODO: documentation
-async def set_status(new=None):
+async def set_status(bot, new=None):
     if new:
         activity_name = new
     else:
         activity_name = random.choice(tenma_config.activities)
     await bot.change_presence(activity=discord.Game(name=activity_name))
+
+async def parse_bill(fp):
+    cnt = ""
+    with open(fp, 'r', encoding="utf-8") as f:
+        cnt = f.read()
+    
+    return cnt.split('$%$%$%$%$%').strip()
 
 # -----------------------
 # tenma_utils.embed_quote

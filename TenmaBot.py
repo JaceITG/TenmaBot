@@ -1,9 +1,12 @@
 #Standard imports
+from ast import alias
 import os, discord, random, sys, asyncio
 from discord.ext import commands
 from datetime import datetime, timedelta
 import tenma_config
 bot = commands.Bot(command_prefix=tenma_config.prefix)
+
+bills = []
 
 #Command modules
 import tenma_utils
@@ -25,7 +28,10 @@ def _is_admin(ctx):
 async def on_ready():
     print('We have logged in as {0.user}'.format(bot))
 
-    await tenma_utils.set_status()
+    await tenma_utils.set_status(bot)
+
+    global bills
+    bills = await tenma_utils.parse_bill(tenma_config.bill_fp)
 
 # @bot.event
 # async def on_message(message):
@@ -58,6 +64,10 @@ async def on_reaction_add(reaction,user):
 @bot.command(name='ping')
 async def _ping(ctx):
     await tenma_utils.send_message("Pong", ctx.channel)
+
+@bot.command(name='billquote', aliases=['bq','bill'])
+async def _bill_quote(ctx):
+    await tenma_utils.send_message(random.choice(bills), ctx.channel)
 
 #### ADMIN ONLY ####
 
