@@ -63,7 +63,7 @@ async def on_reaction_add(reaction,user):
 
 @bot.command(name='ping')
 async def _ping(ctx):
-    await tenma_utils.send_message("Pong", ctx.channel)
+    await tenma_utils.send_message("Pong!", ctx.channel)
 
 @bot.command(name='billquote', aliases=['bq','bill'])
 async def _bill_quote(ctx):
